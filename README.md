@@ -1,2 +1,2 @@
 # Add_Your_Book
-<h2>You can Easily Add your Books and Also you can add your Author name , if you don't want the Book you can delete the particular book easily finally this website is build using HTML,CSS and JS</h2>
+<h2>"Effortlessly add your favorite books along with the author's name, and if you ever change your mind, you can easily delete any book with a click. Built with HTML, CSS, and JavaScript, this website offers a seamless and user-friendly experience for all book lovers."h2>
