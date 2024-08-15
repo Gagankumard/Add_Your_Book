@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendation System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #fff;
+        }
+
+        .header {
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            animation: fadeInDown 1s;
+        }
+
+        .book-card {
+            margin: 20px;
+            animation: fadeInUp 0.5s;
+        }
+
+        .card {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-primary {
+            background-color: #2980b9;
+            border: none;
+        }
+
+        .btn-danger {
+            background-color: #c0392b;
+            border: none;
+        }
+
+        .form-control {
+            background-color: #34495e;
+            color: white;
+            border: none;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Book Recommendation System</h1>
+        <p>Find your next great read!</p>
+    </div>
+
+    <div class="container">
+        <div class="row" id="book-list"></div>
+    </div>
+
+    <div class="container">
+        <h2 class="mt-5">Recommend a Book</h2>
+        <form id="book-form">
+            <div class="form-group">
+                <label for="book-title">Book Title</label>
+                <input type="text" class="form-control" id="book-title" required>
+            </div>
+            <div class="form-group">
+                <label for="book-author">Author</label>
+                <input type="text" class="form-control" id="book-author" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Book</button>
+        </form>
+    </div>
+
+    <script>
+        const bookList = document.getElementById('book-list');
+        const bookForm = document.getElementById('book-form');
+
+        const books = [];
+
+        bookForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const title = document.getElementById('book-title').value;
+            const author = document.getElementById('book-author').value;
+
+            books.push({ title, author });
+            displayBooks();
+            bookForm.reset();
+        });
+
+        function displayBooks() {
+            bookList.innerHTML = '';
+            books.forEach((book, index) => {
+                const card = `
+                    <div class="col-md-4 book-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${book.title}</h5>
+                                <p class="card-text">by ${book.author}</p>
+                                <button class="btn btn-danger" onclick="deleteBook(${index})">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                bookList.innerHTML += card;
+            });
+        }
+
+        function deleteBook(index) {
+            books.splice(index, 1);
+            displayBooks();
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
